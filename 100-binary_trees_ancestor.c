@@ -41,7 +41,11 @@ binary_tree_t *binary_trees_ancestor(
 	second_depth = binary_tree_depth(second);
 
 	first_parent = first->parent;
+	if (first_parent == NULL)
+		return (NULL);
 	second_parent = second->parent;
+	if (second_parent == NULL)
+		return (NULL);
 
 	while (second_depth > first_depth)
 	{
