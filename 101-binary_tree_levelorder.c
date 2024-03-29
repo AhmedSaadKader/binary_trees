@@ -76,7 +76,6 @@ binary_tree_t *dequeue(Queue *queue)
 	return (tree);
 }
 
-
 /**
  * binary_tree_levelorder - goes through a binary tree
  * using level-order traversal
@@ -90,6 +89,8 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
 	Queue *queue;
 	const binary_tree_t *temp_node;
+	QueueNode *current;
+	QueueNode *next;
 
 	if (tree == NULL || func == NULL)
 		return;
@@ -104,4 +105,14 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 			enqueue(queue, temp_node->right);
 		func(temp_node->n);
 	}
+
+	current = queue->front;
+	while (current != NULL)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+
+	free(queue);
 }
