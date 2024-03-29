@@ -7,14 +7,14 @@
  * Return: New node created
 */
 
-QueueNode *createQueueNode(binary_tree_t *tree)
+QueueNode *createQueueNode(const binary_tree_t *tree)
 {
 	QueueNode *newNode;
 
 	newNode = malloc(sizeof(QueueNode));
 	if (newNode == NULL)
 		return (NULL);
-	newNode->tree = tree;
+	newNode->tree = (binary_tree_t *)tree;
 	newNode->next = NULL;
 	return (newNode);
 }
@@ -41,7 +41,7 @@ Queue *createQueue()
  * @tree: the data of the node to insert
 */
 
-void enqueue(Queue *queue, binary_tree_t *tree)
+void enqueue(Queue *queue, const binary_tree_t *tree)
 {
 	QueueNode *newNode;
 
@@ -89,14 +89,12 @@ binary_tree_t *dequeue(Queue *queue)
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 {
 	Queue *queue;
-	QueueNode *front, *rear;
-	binary_tree_t *temp_node;
+	const binary_tree_t *temp_node;
 
 	if (tree == NULL || func == NULL)
 		return;
-	temp_node = tree;
 	queue = createQueue();
-	enqueue(queue, temp_node);
+	enqueue(queue, tree);
 	while (queue->front)
 	{
 		temp_node = dequeue(queue);

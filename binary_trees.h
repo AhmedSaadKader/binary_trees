@@ -74,9 +74,9 @@ binary_tree_t *binary_trees_ancestor(
 	const binary_tree_t *first, const binary_tree_t *second);
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int));
 int binary_tree_is_complete(const binary_tree_t *tree);
-QueueNode createQueueNode(binary_tree_t *tree);
+QueueNode *createQueueNode(const binary_tree_t *tree);
 Queue *createQueue();
-void enqueue(Queue *queue, binary_tree_t *tree);
+void enqueue(Queue *queue, const binary_tree_t *tree);
 binary_tree_t *dequeue(Queue *queue);
 
 #endif
